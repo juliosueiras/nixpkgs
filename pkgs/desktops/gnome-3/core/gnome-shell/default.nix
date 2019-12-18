@@ -1,4 +1,4 @@
-{ fetchurl, fetchpatch, substituteAll, stdenv, meson, ninja, pkgconfig, gnome3, json-glib, libcroco, gettext, libsecret
+{ fetchurl, fetchpatch, substituteAll, stdenv, meson, ninja, pkgconfig, gnome3, json-glib, gettext, libsecret
 , python3, libsoup, polkit, clutter, networkmanager, docbook_xsl , docbook_xsl_ns, at-spi2-core
 , libstartup_notification, telepathy-glib, telepathy-logger, libXtst, unzip, glibcLocales, shared-mime-info
 , libgweather, libcanberra-gtk3, librsvg, geoclue2, perl, docbook_xml_dtd_42, desktop-file-utils
@@ -15,11 +15,11 @@ let
 
 in stdenv.mkDerivation rec {
   pname = "gnome-shell";
-  version = "3.34.4";
+  version = "3.35.92";
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-shell/${stdenv.lib.versions.majorMinor version}/${pname}-${version}.tar.xz";
-    sha256 = "0rm32h7lv4vyadi9x32sb6fwxslarwk70yzmvzjxbq872cazp779";
+    sha256 = "0n1wh6kq9hrvpiy46d76xv4plm7pk355jd2mjslhjl9jh55r0bkv";
   };
 
   LANG = "en_US.UTF-8";
@@ -31,8 +31,8 @@ in stdenv.mkDerivation rec {
   buildInputs = [
     systemd
     gsettings-desktop-schemas gnome-keyring glib gcr json-glib accountsservice
-    libcroco libsecret libsoup polkit gdk-pixbuf librsvg
-    clutter networkmanager libstartup_notification telepathy-glib
+    libsecret libsoup polkit gdk-pixbuf librsvg
+    networkmanager libstartup_notification telepathy-glib
     libXtst gjs mutter libpulseaudio evolution-data-server
     libical gtk3 gstreamer gdm libcanberra-gtk3 geoclue2
     adwaita-icon-theme gnome-bluetooth
@@ -61,6 +61,8 @@ in stdenv.mkDerivation rec {
 
   postPatch = ''
     patchShebangs src/data-to-c.pl
+    chmod +x meson/postinstall.py
+    patchShebangs meson/postinstall.py
 
     substituteInPlace src/gnome-shell-extension-tool.in --replace "@PYTHON@" "${pythonEnv}/bin/python"
     substituteInPlace src/gnome-shell-perf-tool.in --replace "@PYTHON@" "${pythonEnv}/bin/python"
