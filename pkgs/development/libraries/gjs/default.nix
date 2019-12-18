@@ -1,11 +1,13 @@
 { fetchurl
 , stdenv
+, meson
+, ninja
 , pkgconfig
 , gnome3
 , gtk3
 , atk
 , gobject-introspection
-, spidermonkey_60
+, spidermonkey_68
 , pango
 , cairo
 , readline
@@ -19,16 +21,18 @@
 
 stdenv.mkDerivation rec {
   pname = "gjs";
-  version = "1.58.4";
+  version = "1.63.92";
 
   src = fetchurl {
     url = "mirror://gnome/sources/gjs/${stdenv.lib.versions.majorMinor version}/${pname}-${version}.tar.xz";
-    sha256 = "0pxxgsb9gvymgr7qsglfdbaa7hy29y01prszjr27f7bpdik3y6i6";
+    sha256 = "11w5g7s4654m5cm29m11s2cmcpa602j6ihhjp0r80fxf3g6l51vd";
   };
 
   outputs = [ "out" "dev" "installedTests" ];
 
   nativeBuildInputs = [
+    meson
+    ninja
     pkgconfig
     makeWrapper
     libxml2 # for xml-stripblanks
@@ -38,7 +42,7 @@ stdenv.mkDerivation rec {
     gobject-introspection
     cairo
     readline
-    spidermonkey_60
+    spidermonkey_68
     dbus # for dbus-run-session
   ];
 
@@ -46,9 +50,13 @@ stdenv.mkDerivation rec {
     glib
   ];
 
-  configureFlags = [
-    "--enable-installed-tests"
+  mesonFlags = [
+    "-Dprofiler=disabled"
   ];
+
+  # configureFlags = [
+  #   "--enable-installed-tests"
+  # ];
 
   postPatch = ''
     for f in installed-tests/*.test.in; do
