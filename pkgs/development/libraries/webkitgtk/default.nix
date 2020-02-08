@@ -61,13 +61,13 @@ with stdenv.lib;
 
 stdenv.mkDerivation rec {
   pname = "webkitgtk";
-  version = "2.26.4";
+  version = "2.27.91";
 
   outputs = [ "out" "dev" ];
 
   src = fetchurl {
     url = "https://webkitgtk.org/releases/${pname}-${version}.tar.xz";
-    sha256 = "0gqi9f9njrdn8vad1zvr59b25arwc8r0n8bp25sgkbfz2c3r11j3";
+    sha256 = "1smx908kv1mdq618krm0prr616m1905r6id789akzhr0ys0ifh9h";
   };
 
   patches = optionals stdenv.isLinux [
