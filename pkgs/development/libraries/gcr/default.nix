@@ -1,6 +1,8 @@
 { stdenv
 , fetchurl
 , pkgconfig
+, meson
+, ninja
 , gettext
 , gnupg
 , p11-kit
@@ -15,30 +17,42 @@
 , vala
 , gnome3
 , python3
+, shared-mime-info
 }:
 
 stdenv.mkDerivation rec {
   pname = "gcr";
-  version = "3.34.0";
+  version = "3.35.91";
 
   src = fetchurl {
     url = "mirror://gnome/sources/${pname}/${stdenv.lib.versions.majorMinor version}/${pname}-${version}.tar.xz";
-    sha256 = "0925snsixzkwh49xiayqmj6fcrmklqk8kyy0jkv7m64h9abm1pr9";
+    sha256 = "1yrp2hgjw734llvnx6g7ardgvl9fz415bh5052735wa5cbhavls5";
   };
 
   postPatch = ''
     patchShebangs build/ gcr/fixtures/
+
+    chmod +x meson_post_install.py
+    patchShebangs meson_post_install.py
   '';
 
   outputs = [ "out" "dev" ];
 
+  mesonFlags = [
+    "-Dgtk_doc=false"
+  ];
+
   nativeBuildInputs = [
     pkgconfig
+    meson
+    python3
+    ninja
     gettext
     gobject-introspection
     libxslt
     makeWrapper
     vala
+    shared-mime-info
   ];
 
   buildInputs = [
