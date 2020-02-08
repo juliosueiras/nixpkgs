@@ -1,14 +1,15 @@
 { stdenv, fetchurl, pkgconfig, dbus, libgcrypt, pam, python2, glib, libxslt
 , gettext, gcr, libcap_ng, libselinux, p11-kit, openssh, wrapGAppsHook
-, docbook_xsl, docbook_xml_dtd_43, gnome3 }:
+, docbook_xsl, docbook_xml_dtd_43, gnome3
+}:
 
 stdenv.mkDerivation rec {
   pname = "gnome-keyring";
-  version = "3.34.0";
+  version = "3.35.90";
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-keyring/${stdenv.lib.versions.majorMinor version}/${pname}-${version}.tar.xz";
-    sha256 = "0hqrsh5g9q9lm190f0m85q4nki8k4ng7wphl6qbccdry59aakkg9";
+    sha256 = "1x4mkmbwmxm9h2ndrpdz0346dpc8hdri9fq92qkki7s8d280r7kj";
   };
 
   outputs = [ "out" "dev" ];
@@ -19,7 +20,9 @@ stdenv.mkDerivation rec {
   ];
 
   nativeBuildInputs = [
-    pkgconfig gettext libxslt docbook_xsl docbook_xml_dtd_43 wrapGAppsHook
+    pkgconfig gettext libxslt docbook_xsl docbook_xml_dtd_43
+    # remove with patch
+    wrapGAppsHook
   ];
 
   configureFlags = [
