@@ -15,12 +15,12 @@ diff --git a/gio/meson.build b/gio/meson.build
 index 9a9e621b3..12e1d146a 100644
 --- a/gio/meson.build
 +++ b/gio/meson.build
-@@ -830,14 +830,15 @@ pkg.generate(libgio,
+@@ -819,14 +819,15 @@ pkg.generate(libgio,
    variables : ['datadir=' + join_paths('${prefix}', get_option('datadir')),
                 'schemasdir=' + join_paths('${datadir}', schemas_subdir),
                 'bindir=' + join_paths('${prefix}', get_option('bindir')),
 +               'devbindir=' + get_option('devbindir'),
-                'giomoduledir=' + giomodulesdir,
+                'giomoduledir=' + pkgconfig_giomodulesdir,
                 'gio=' + join_paths('${bindir}', 'gio'),
 -               'gio_querymodules=' + join_paths('${bindir}', 'gio-querymodules'),
 -               'glib_compile_schemas=' + join_paths('${bindir}', 'glib-compile-schemas'),
