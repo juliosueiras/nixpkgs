@@ -32,15 +32,16 @@
 , tzdata
 , yelp
 , libgnomekbd
+, malcontent
 }:
 
 stdenv.mkDerivation rec {
   pname = "gnome-initial-setup";
-  version = "3.34.3";
+  version = "3.35.92";
 
   src = fetchurl {
     url = "mirror://gnome/sources/${pname}/${stdenv.lib.versions.majorMinor version}/${pname}-${version}.tar.xz";
-    sha256 = "1dc87mcvr7vdhfx4q0c44q37lf7ls2qvnc34dm66802qssrcxy9k";
+    sha256 = "1jzkalii3g757fa06c8anx41vki1a9wgnfhqh4cp8aalqldbgr7m";
   };
 
   nativeBuildInputs = [
@@ -74,6 +75,7 @@ stdenv.mkDerivation rec {
     polkit
     webkitgtk
     networkmanagerapplet
+    malcontent
   ];
 
   patches = [
