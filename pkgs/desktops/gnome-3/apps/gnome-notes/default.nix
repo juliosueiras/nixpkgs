@@ -5,14 +5,14 @@
 , gnome3, libxml2, gsettings-desktop-schemas, tracker }:
 
 let
-  version = "3.34.2";
+  version = "3.35.91";
 in stdenv.mkDerivation {
   pname = "gnome-notes";
   inherit version;
 
   src = fetchurl {
     url = "mirror://gnome/sources/bijiben/${stdenv.lib.versions.majorMinor version}/bijiben-${version}.tar.xz";
-    sha256 = "0kmhivgamnv2kk5kywrwm4af4s7663rjwh2wdri8iy1n2gmc9qpv";
+    sha256 = "041hih4lhmzap7aifc543zn3ng2xgs5l6ydx5f3cfcr6y0mlx0pp";
   };
 
   doCheck = true;
