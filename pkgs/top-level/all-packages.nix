@@ -9437,7 +9437,8 @@ in
 
   pipenv = callPackage ../development/tools/pipenv {};
 
-  pipewire = callPackage ../development/libraries/pipewire {};
+  pipewire_0_3 = callPackage ../development/libraries/pipewire {};
+  pipewire = callPackage ../development/libraries/pipewire/2.nix {};
 
   pyrex = pyrex095;
 
