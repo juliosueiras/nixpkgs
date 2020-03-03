@@ -2,7 +2,7 @@
 , desktop-file-utils, gnome-online-accounts, gsettings-desktop-schemas, adwaita-icon-theme
 , libpeas, libsecret, gmime3, isocodes, libxml2, gettext, fetchpatch
 , sqlite, gcr, json-glib, itstool, libgee, gnome3, webkitgtk, python3
-, xvfb_run, dbus, shared-mime-info, libunwind, libunity, folks, glib-networking
+, xvfb_run, dbus, shared-mime-info, libunwind, folks, glib-networking
 , gobject-introspection, gspell, appstream-glib, libytnef, libhandy }:
 
 stdenv.mkDerivation rec {
@@ -24,7 +24,7 @@ stdenv.mkDerivation rec {
     adwaita-icon-theme enchant2 gcr gmime3 gnome-online-accounts
     gsettings-desktop-schemas gtk3 isocodes json-glib libpeas
     libgee libsecret sqlite webkitgtk glib-networking
-    libunwind libunity folks gspell libytnef libhandy
+    libunwind folks gspell libytnef libhandy
   ];
 
   checkInputs = [ xvfb_run dbus ];
