@@ -1,4 +1,4 @@
-{ stdenv, gettext, fetchurl, pkgconfig, gtkmm3, libxml2, polkit
+{ stdenv, gettext, fetchurl, pkgconfig, gtkmm3, libxml2
 , bash, gtk3, glib, wrapGAppsHook, meson, ninja, python3
 , gsettings-desktop-schemas, itstool, gnome3, librsvg, gdk-pixbuf, libgtop, systemd }:
 
@@ -15,7 +15,6 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [
     pkgconfig gettext itstool wrapGAppsHook meson ninja python3
-    polkit # for ITS file
   ];
   buildInputs = [
     bash gtk3 glib libxml2 gtkmm3 libgtop gdk-pixbuf gnome3.adwaita-icon-theme librsvg
